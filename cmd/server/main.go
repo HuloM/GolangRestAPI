@@ -1,9 +1,10 @@
 package main
 
 import (
-	transportHTTP "../../internal/transport/http"
 	"fmt"
 	"net/http"
+
+	transportHTTP "github.com/HuloM/GolangRestAPI/internal/transport/http"
 )
 
 // App - the struct that contains things like pointers
