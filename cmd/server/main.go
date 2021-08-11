@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/HuloM/GolangRestAPI/internal/database"
 	"net/http"
 
 	transportHTTP "github.com/HuloM/GolangRestAPI/internal/transport/http"
@@ -16,6 +17,12 @@ type App struct {
 // Run - sets up our application
 func (app *App) Run() error {
 	fmt.Println("Setting up our App")
+
+	var err error
+	_, err = database.NewDatabase()
+	if err != nil {
+		return err
+	}
 
 	handler := transportHTTP.NewHandler()
 	handler.SetupRoutes()

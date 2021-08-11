@@ -2,8 +2,8 @@ package database
 
 import (
 	"fmt"
-	"gorm.io/gorm"
-	"gorm.io/driver/sqlite"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"os"
 )
 
@@ -23,10 +23,9 @@ func NewDatabase() (*gorm.DB, error) {
 		return db, nil
 	}
 
-	if err := db.DB().Ping; err != nil {
+	if err := db.DB().Ping(); err != nil {
 		return db, err
 	}
 
-
-	return nil, nil
+	return db, nil
 }
