@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/HuloM/GolangRestAPI/internal/comment"
 	"github.com/HuloM/GolangRestAPI/internal/database"
 	"net/http"
 
@@ -19,12 +20,14 @@ func (app *App) Run() error {
 	fmt.Println("Setting up our App")
 
 	var err error
-	_, err = database.NewDatabase()
+	db, err := database.NewDatabase()
 	if err != nil {
 		return err
 	}
 
-	handler := transportHTTP.NewHandler()
+	commentService := comment.NewService(db)
+
+	handler := transportHTTP.NewHandler(commentService)
 	handler.SetupRoutes()
 
 	if err := http.ListenAndServe(":8080", handler.Router); err != nil {
