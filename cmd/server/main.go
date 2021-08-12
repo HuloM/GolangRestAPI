@@ -39,7 +39,7 @@ func (app *App) Run() error {
 		fmt.Println("failed to set up server")
 		return err
 	}
-
+	fmt.Println("Server up")
 	return nil
 }
 
