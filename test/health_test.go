@@ -4,6 +4,7 @@ package test
 
 import (
 	"testing"
+	"github.com/go-resty/resty/v2"
 )
 
 func TestHealthEndpoint(t *testing.T) {
